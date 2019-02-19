@@ -1,11 +1,9 @@
-//Usage example: node .\index.js --utility="AmerenEle.Tara" --cpiaux="JEMSCI;UnitedEnergyServices" --compaigntype="ICSOL" .\products.json
-
 const fs = require('fs')
 const path = require('path')
 const argv = require('minimist')(process.argv.slice(2));
 
 function getUsage() {
-  return 'Usage: node index.js [--utility="<utility_name>"] [--cpiaux="<cpiAux_name">] [--compaigntype="<compaiginType_name>"] <filename>'
+  return 'Usage: node index.js [--utility="<utility_value>"] [--cpiaux="<cpiAux_value">] [--campaigntype="<CampaignType_value>"] <filename>'
 }
 
 if (argv.help || argv.h) {
@@ -17,7 +15,7 @@ const paramSet = new Set()
 paramSet.add('_')
 paramSet.add('utility')
 paramSet.add('cpiaux')
-paramSet.add('compaigntype')
+paramSet.add('campaigntype')
 
 const invalidParams = Object.keys(argv).filter((param) => {
   const paramTest = paramSet.has(param)
@@ -60,8 +58,8 @@ const filteredData = jsData.filter((obj) => {
   sign = argv.utility ? sign && (obj.UtilityCo == argv.utility) : sign
   sign = argv.cpiaux ? sign && (obj.CpiAuxiliary1 == argv.cpiaux) : sign
 
-  return argv.compaigntype ? sign && (obj.CampaignType == argv.compaigntype) : sign
+  return argv.campaigntype ? sign && (obj.CampaignType == argv.campaigntype) : sign
 })
 
 console.log(filteredData)
-console.log(`Найдено ${filteredData.length} совпадений из ${jsData.length}`) 
+console.log(`${filteredData.length} matches found from total of ${jsData.length} elements`) 
