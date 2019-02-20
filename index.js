@@ -3,7 +3,7 @@ const path = require('path')
 const argv = require('minimist')(process.argv.slice(2));
 
 function getUsage() {
-  return 'Usage: node index.js [--utility="<utility_value>"] [--cpiaux="<cpiAux_value">] [--campaigntype="<CampaignType_value>"] <filename>'
+  return 'For performing search type next line: node index.js [--utility="<utility_value>"] [--cpiaux="<cpiAux_value">] [--campaigntype="<CampaignType_value>"] <filename>'
 }
 
 if (argv.help || argv.h) {
